@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Ristorante;
+use App\Http\Controllers\PostmanController;;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,18 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/ciao', function () {
+    return Inertia::render('Ciao', []);
+});
+
+Route::get('/ristorante', function() {
+    // If the Content-Type and Accept headers are set to 'application/json', 
+    // this will return a JSON structure. This will be cleaned up later.
+    return Ristorante::all();
+});
+
+Route::get('/percorso', [PostmanController::class, 'index'])->name('percorso');
 
 Route::middleware([
     'auth:sanctum',

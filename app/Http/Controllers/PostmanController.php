@@ -10,6 +10,8 @@ class PostmanController extends Controller
     public function index()
     {
         $ristoranti = Ristorante::all();
+
+        $url = route('percorso');
         
         return response()->json($ristoranti);
     }
