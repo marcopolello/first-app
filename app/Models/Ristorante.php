@@ -14,7 +14,7 @@ class Ristorante extends Model
      */
     protected $table = 'ristoranti';
 
-    protected $fillable = ['id', 'name', 'address', 'city', 'phone'];
+    protected $fillable = ['id', 'nome', 'indirizzo', 'citta', 'telefono'];
 
     use HasFactory;
 }

@@ -4,7 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Ristorante;
-use App\Http\Controllers\PostmanController;;
+use App\Http\Controllers\PostmanController;
+use App\Http\Controllers\AdminPanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/ciao', function () {
+Route::get('/panel', function () {
     return Inertia::render('Ciao', []);
 });
 
@@ -36,7 +37,13 @@ Route::get('/ristorante', function() {
     return Ristorante::all();
 });
 
-Route::get('/percorso', [PostmanController::class, 'index'])->name('percorso');
+Route::get('/admin', [AdminPanelController::class, 'index'])->name('admin.index');
+
+// Altre route per gestire le creazione, modifica e eliminazione dei ristoranti
+Route::post('/create/ristorante', [AdminPanelController::class, 'store'])->name('ristoranti.store');
+Route::delete('/delete/ristorante/{id}', [AdminPanelController::class, 'delete'])->name('ristoranti.delete');
+
+Route::get('/percorso', [PostmanController::class, 'index']);
 
 Route::middleware([
     'auth:sanctum',

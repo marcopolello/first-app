@@ -11,8 +11,8 @@ class PostmanController extends Controller
     {
         $ristoranti = Ristorante::all();
 
-        $url = route('percorso');
+        $citta = $ristoranti->pluck('citta')->unique()->toArray();
         
-        return response()->json($ristoranti);
+        return response()->json($citta[0]);
     }
 }
