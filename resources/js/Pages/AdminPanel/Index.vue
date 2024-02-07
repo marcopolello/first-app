@@ -105,7 +105,7 @@ export default {
             await this.$inertia.post('/create/ristorante', this.newRistorante);
             this.newRistorante.nome = '';
 
-            await this.fetchRistoranti(); 
+            //await this.fetchRistoranti(); 
         },
         /**
         * @param {number} id - The ID of the restaurant to be deleted.
