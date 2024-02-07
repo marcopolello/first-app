@@ -27,7 +27,6 @@ class AdminPanelController extends Controller
         ]);
 
         Ristorante::create([
-            'id' => Str::uuid(),
             'nome' => $request->input('nome'),
             // Aggiungi eventuali altri campi del ristorante da creare
         ]);

@@ -4,6 +4,7 @@
         <ul class="ristoranti-list">
             <li v-for="ristorante in ristoranti" :key="ristorante.id" class="ristorante-item">
                 {{ ristorante.nome }}
+                {{ ristorante.id }}
                 <button @click="deleteRistorante(ristorante.id)" class="delete-button">Elimina</button>
             </li>
         </ul>
@@ -103,6 +104,8 @@ export default {
         async submitRistorante() {
             await this.$inertia.post('/create/ristorante', this.newRistorante);
             this.newRistorante.nome = '';
+
+            await this.fetchRistoranti(); 
         },
         /**
         * @param {number} id - The ID of the restaurant to be deleted.
@@ -114,6 +117,10 @@ export default {
                 await this.$inertia.delete(`delete/ristorante/${id}`);
             }
         },
+        async fetchRistoranti() {
+            //TODPOL finire e testare la funzione di fetch per aggiornare pagina post creazione e cancellazione ristoranti
+            await this.$inertia.get('/admin');
+        }
     }
 };
 </script>
