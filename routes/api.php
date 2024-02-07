@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SomethingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// routes/api.php
+
+Route::group([
+    'prefix' => 'v1',
+    'middleware' => 'with_fast_api_key'
+], function () {
+
+    Route::post('/just/an/example', [SomethingController::class, 'justAnExample']);
+    //Route::get('/rest-api/just/an/example/get', [SomethingController::class, 'justAnExample']);
+
+});
+

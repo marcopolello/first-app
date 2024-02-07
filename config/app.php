@@ -187,4 +187,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    'fast_api_key' => env('APP_FAST_API_KEY'),
+
+
 ];
