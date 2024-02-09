@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Ristorante;
 use App\Http\Controllers\PostmanController;
 use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,5 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+Route::get('/chart', [ChartController::class, 'chartView']);

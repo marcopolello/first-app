@@ -105,7 +105,7 @@ export default {
             await this.$inertia.post('/create/ristorante', this.newRistorante);
             this.newRistorante.nome = '';
 
-            //await this.fetchRistoranti(); 
+            await this.$inertia.get('/admin');
         },
         /**
         * @param {number} id - The ID of the restaurant to be deleted.
@@ -115,12 +115,24 @@ export default {
             if (confirm('Sei sicuro di voler eliminare questo ristorante?')) {
                 // Send a DELETE request to the server to delete the restaurant
                 await this.$inertia.delete(`delete/ristorante/${id}`);
+                await this.$inertia.get('/admin');
             }
         },
-        async fetchRistoranti() {
-            //TODPOL finire e testare la funzione di fetch per aggiornare pagina post creazione e cancellazione ristoranti
-            await this.$inertia.get('/admin');
-        }
     }
 };
+</script>
+
+<script setup>
+import { reactive } from 'vue'
+import { router } from '@inertiajs/vue3'
+
+const form = reactive({
+    first_name: null,
+    last_name: null,
+    email: null,
+})
+
+function submit() {
+    router.post('/users', form)
+}
 </script>
